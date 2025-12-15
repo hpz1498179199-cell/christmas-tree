@@ -2,198 +2,93 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arix Signature Tree</title>
+    <title>Arix Signature Christmas Tree</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
-      
-      :root {
-        --color-gold: #FFD700;
-        --color-emerald-deep: #002211;
-        --color-emerald-light: #008f51;
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #000502; /* Deepest Jungle Green */
-        color: #e5e7eb;
-        font-family: 'Lato', sans-serif;
-        overflow: hidden;
-        width: 100vw;
-        height: 100vh;
-      }
-      
-      h1, h2, h3, .serif {
+      body { 
+        margin: 0; 
+        overflow: hidden; 
+        background-color: #050505; 
         font-family: 'Playfair Display', serif;
       }
-
-      #root {
-        width: 100%;
-        height: 100%;
-        position: relative;
-      }
-
-      /* Custom UI Styles replacing Tailwind */
-      .ui-layer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
-        pointer-events: none;
+      #root { 
+        width: 100vw; 
+        height: 100vh; 
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 2rem 3rem;
-        box-sizing: border-box;
-      }
-
-      .header {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-        animation: fadeInDown 1s ease-out;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .logo-circle {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        border: 1px solid var(--color-gold);
-        background-color: var(--color-emerald-deep);
-        display: flex;
-        align-items: center;
         justify-content: center;
-      }
-
-      .logo-text {
-        color: var(--color-gold);
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        opacity: 0.8;
-      }
-
-      .main-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 3.5rem;
-        line-height: 1.1;
-        color: white;
-        margin: 0;
-      }
-
-      .gradient-text {
-        background: linear-gradient(to right, #00ff88, #008f51);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .footer {
-        display: flex;
-        flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        pointer-events: auto;
+        color: #D4AF37;
       }
-
-      .footer-desc {
-        color: rgba(255, 255, 255, 0.4);
-        font-size: 0.875rem;
-        font-weight: 300;
-        max-width: 20rem;
-        line-height: 1.5;
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+      
+      .christmas-tree {
+        text-align: center;
+        animation: glow 2s ease-in-out infinite alternate;
       }
-
-      .action-btn {
-        position: relative;
-        padding: 1rem 2rem;
-        background: transparent;
-        border: 1px solid rgba(255, 215, 0, 0.3);
-        color: var(--color-gold);
-        cursor: pointer;
-        overflow: hidden;
-        transition: all 0.5s ease;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-family: 'Lato', sans-serif;
+      
+      @keyframes glow {
+        from { text-shadow: 0 0 20px #D4AF37; }
+        to { text-shadow: 0 0 30px #D4AF37, 0 0 40px #004225; }
       }
-
-      .action-btn:hover {
-        border-color: var(--color-gold);
-        background: rgba(255, 215, 0, 0.1);
+      
+      .tree-part {
+        color: #004225;
+        font-size: 2rem;
+        line-height: 0.8;
       }
-
-      .btn-text {
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        font-weight: 700;
-        font-size: 0.875rem;
-        position: relative;
-        z-index: 2;
+      
+      .star {
+        color: #D4AF37;
+        font-size: 3rem;
+        animation: twinkle 1s ease-in-out infinite alternate;
       }
-
-      .btn-icon {
-        width: 1rem;
-        height: 1rem;
-        transition: transform 0.5s;
-      }
-
-      .btn-icon.rotated {
-        transform: rotate(180deg);
-      }
-
-      .frame-border {
-        position: absolute;
-        top: 1rem;
-        left: 1rem;
-        right: 1rem;
-        bottom: 1rem;
-        border: 1px solid rgba(255, 215, 0, 0.1);
-        pointer-events: none;
-        z-index: 5;
-      }
-
-      @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      @media (max-width: 768px) {
-        .ui-layer { padding: 1.5rem; }
-        .main-title { font-size: 2.5rem; }
-        .footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      
+      @keyframes twinkle {
+        from { opacity: 0.7; }
+        to { opacity: 1; }
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "three": "https://esm.sh/three@0.165.0",
-    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.16.8",
-    "@react-three/drei": "https://esm.sh/@react-three/drei@9.108.0",
-    "@react-three/postprocessing": "https://esm.sh/@react-three/postprocessing@2.16.2",
-    "maath": "https://esm.sh/maath@0.10.7",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
-  }
-}
-</script>
-</head>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              arix: {
+                green: '#004225',
+                gold: '#D4AF37',
+                dark: '#020f08'
+              }
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+            }
+          }
+        }
+      }
+    </script>
+  </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="christmas-tree">
+        <div class="star">★</div>
+        <div class="tree-part">🎄</div>
+        <div class="tree-part">🎄🎄</div>
+        <div class="tree-part">🎄🎄🎄</div>
+        <div class="tree-part">🎄🎄🎄🎄</div>
+        <div class="tree-part">🎄🎄🎄🎄🎄</div>
+        <div style="color: #8B4513; font-size: 1.5rem;">|||</div>
+        <h1 style="color: #D4AF37; margin-top: 20px;">Arix Signature Christmas Tree</h1>
+        <p style="color: #004225;">🎁 Happy Holidays! 🎁</p>
+      </div>
+    </div>
+    
+    <script>
+      // 简单的交互效果
+      document.addEventListener('click', function() {
+        const tree = document.querySelector('.christmas-tree');
+        tree.style.transform = tree.style.transform === 'scale(1.1)' ? 'scale(1)' : 'scale(1.1)';
+      });
+    </script>
   </body>
 </html>
